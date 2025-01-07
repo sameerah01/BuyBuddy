@@ -35,7 +35,7 @@ export function ScriptLoader() {
             if (chatWidget?.shadowRoot) {
               const firstShadow = chatWidget.shadowRoot.querySelector('mw-chat');
               const bubble = chatWidget.shadowRoot.querySelector('mw-bubble');
-              if (bubble) {
+              if (bubble && bubble.getAttribute("state") == 'open') {
                 (bubble as HTMLElement).click();
               }
               if (firstShadow?.shadowRoot) {
@@ -44,7 +44,6 @@ export function ScriptLoader() {
                   (secondShadow as HTMLElement).style.display = 'none';
                   clearInterval(interval);
                   setTimeout(() => setIsLoading(false), 500);
-                  console.log('Successfully hidden powered-by element');
                 }
               }
             }
